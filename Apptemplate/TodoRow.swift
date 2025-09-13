@@ -27,7 +27,7 @@ struct TodoRow: View {
                 // Checkbox
                 Button(action: {
                     withAnimation(.easeInOut(duration: 0.2)) {
-                        todo.isCompleted.toggle()
+                        completeTodo()
                     }
                 }) {
                     Image(systemName: todo.isCompleted ? "checkmark.circle.fill" : "circle")
@@ -47,6 +47,16 @@ struct TodoRow: View {
                             Text(todo.formattedDate)
                                 .font(.caption)
                                 .foregroundStyle(.secondary)
+                        }
+                        
+                        if todo.hasRecurrenceIcon {
+                            HStack(spacing: 2) {
+                                Image(systemName: "repeat")
+                                    .font(.caption2)
+                                Text(todo.recurrencePattern.shortName)
+                                    .font(.caption)
+                            }
+                            .foregroundStyle(.black.opacity(0.7))
                         }
                         
                         if let deadline = todo.formattedDeadline {
@@ -152,6 +162,38 @@ struct TodoRow: View {
         } message: {
             Text("Upgrade to Premium to create subtasks")
         }
+    }
+    
+    private func completeTodo() {
+        todo.isCompleted.toggle()
+        
+        // If this is a recurring task being completed (not uncompleted)
+        if todo.isCompleted && todo.isRecurring && todo.parentTodoId == nil {
+            createNextOccurrence()
+        }
+    }
+    
+    private func createNextOccurrence() {
+        guard let nextDate = todo.nextOccurrenceDate() else { return }
+        
+        // Create the next occurrence
+        let nextTodo = Todo(
+            title: todo.title,
+            date: nextDate,
+            recurrencePattern: todo.recurrencePattern
+        )
+        
+        // Copy deadline if it exists (adjust for the new date)
+        if let originalDeadline = todo.deadline {
+            let calendar = Calendar.current
+            let timeInterval = originalDeadline.timeIntervalSince(todo.date)
+            nextTodo.deadline = nextDate.addingTimeInterval(timeInterval)
+        }
+        
+        // Link to original for tracking
+        nextTodo.originalId = todo.originalId ?? todo.id
+        
+        modelContext.insert(nextTodo)
     }
     
     private func deleteTodo() {

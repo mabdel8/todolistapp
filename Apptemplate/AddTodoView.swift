@@ -19,6 +19,7 @@ struct AddTodoView: View {
     @State private var deadlineDate = Date()
     @State private var deadlineTime = Date()
     @State private var includeTime = false
+    @State private var recurrencePattern: RecurrencePattern = .none
     @State private var parentTodoId: UUID?
     @State private var showPaywallAlert = false
     
@@ -42,7 +43,19 @@ struct AddTodoView: View {
                 .listRowBackground(Color.clear)
                 
                 if storeManager.isSubscribed {
-                    Section("Deadline (Premium)") {
+                    Section("Premium Features") {
+                        // Recurring
+                        if !isSubtask { // Don't show recurring for subtasks
+                            Picker("Repeat", selection: $recurrencePattern) {
+                                ForEach(RecurrencePattern.allCases, id: \.self) { pattern in
+                                    Text(pattern.displayName).tag(pattern)
+                                }
+                            }
+                            .pickerStyle(.menu)
+                            .tint(.black)
+                        }
+                        
+                        // Deadline
                         Toggle("Add Deadline", isOn: $hasDeadline)
                             .tint(.black)
                         
@@ -63,7 +76,25 @@ struct AddTodoView: View {
                     }
                     .listRowBackground(Color.clear)
                 } else {
-                    Section {
+                    Section("Premium Features") {
+                        if !isSubtask {
+                            Button(action: {
+                                showPaywallAlert = true
+                            }) {
+                                HStack {
+                                    Image(systemName: "lock.fill")
+                                        .font(.caption)
+                                    Text("Make Recurring")
+                                        .font(.body)
+                                    Spacer()
+                                    Text("Premium")
+                                        .font(.caption)
+                                        .foregroundStyle(.secondary)
+                                }
+                            }
+                            .foregroundStyle(.black)
+                        }
+                        
                         Button(action: {
                             showPaywallAlert = true
                         }) {
@@ -110,13 +141,15 @@ struct AddTodoView: View {
                 }
                 Button("Cancel", role: .cancel) { }
             } message: {
-                Text("Upgrade to Premium to add deadlines that show in red when overdue")
+                Text("Upgrade to Premium to unlock recurring tasks and deadlines")
             }
         }
     }
     
     private func addTodo() {
-        let newTodo = Todo(title: title, date: date)
+        // Create the main todo with recurring pattern (only for premium users)
+        let pattern = (!isSubtask && storeManager.isSubscribed) ? recurrencePattern : .none
+        let newTodo = Todo(title: title, date: date, recurrencePattern: pattern)
         
         if isSubtask, let parent = parentTodo {
             newTodo.parentTodoId = parent.id

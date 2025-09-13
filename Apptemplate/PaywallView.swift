@@ -26,9 +26,9 @@ struct PaywallView: View {
     }
     
     private let testimonials = [
-        Testimonial(text: "The calendar view changed everything. I can finally see my entire month at a glance!", author: "Emma L."),
-        Testimonial(text: "Subtasks help me break down big projects into manageable pieces. Game changer!", author: "David M."),
-        Testimonial(text: "Setting specific deadlines keeps me accountable. Worth every penny!", author: "Sarah K.")
+        Testimonial(text: "Recurring tasks for my daily habits are a game changer. Set once, done forever!", author: "Emma L."),
+        Testimonial(text: "The calendar view changed everything. I can see all my tasks and deadlines at a glance!", author: "David M."),
+        Testimonial(text: "Subtasks help me break down big projects into manageable pieces. Love it!", author: "Sarah K.")
     ]
     
     // MARK: - Body
@@ -76,6 +76,7 @@ struct PaywallView: View {
     private var featuresSection: some View {
         VStack(alignment: .leading, spacing: 16) {
             FeatureRow(icon: "calendar.badge.clock", text: "Calendar View")
+            FeatureRow(icon: "repeat", text: "Recurring Tasks")
             FeatureRow(icon: "list.bullet.indent", text: "Create Subtasks")
             FeatureRow(icon: "clock.fill", text: "Set Deadline Times")
         }
