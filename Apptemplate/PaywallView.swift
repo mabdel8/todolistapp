@@ -26,9 +26,9 @@ struct PaywallView: View {
     }
     
     private let testimonials = [
-        Testimonial(text: "Love tracking my reading stats and competing with friends. Makes reading so much more fun!", author: "Emma L."),
-        Testimonial(text: "The AI-powered features help me discover books I never would have found otherwise.", author: "David M."),
-        Testimonial(text: "Finally hit my reading goals thanks to the smart reminders and progress tracking.", author: "Sarah K.")
+        Testimonial(text: "The calendar view changed everything. I can finally see my entire month at a glance!", author: "Emma L."),
+        Testimonial(text: "Subtasks help me break down big projects into manageable pieces. Game changer!", author: "David M."),
+        Testimonial(text: "Setting specific deadlines keeps me accountable. Worth every penny!", author: "Sarah K.")
     ]
     
     // MARK: - Body
@@ -75,9 +75,9 @@ struct PaywallView: View {
     
     private var featuresSection: some View {
         VStack(alignment: .leading, spacing: 16) {
-            FeatureRow(icon: "books.vertical.fill", text: "Unlimited Books")
-            FeatureRow(icon: "chart.line.uptrend.xyaxis", text: "Advanced Statistics")
-            FeatureRow(icon: "sparkles", text: "AI-Powered Features")
+            FeatureRow(icon: "calendar.badge.clock", text: "Calendar View")
+            FeatureRow(icon: "list.bullet.indent", text: "Create Subtasks")
+            FeatureRow(icon: "clock.fill", text: "Set Deadline Times")
         }
         .padding(.horizontal, 24)
     }
@@ -139,17 +139,17 @@ struct PaywallView: View {
     private var subscriptionPlansSection: some View {
         VStack(spacing: 12) {
             PlanCardView(
-                title: "Lifetime Plan",
+                title: "Lifetime Access",
                 price: lifetimeProduct?.displayPrice ?? "$19.99",
-                originalPrice: "$149",
-                badge: "BEST DEAL",
+                originalPrice: "$49",
+                badge: "BEST VALUE",
                 isSelected: selectedPlan == "template_lifetime",
                 onTap: { selectedPlan = "template_lifetime" }
             )
             
             PlanCardView(
-                title: "3-Day Trial",
-                subtitle: "then $2.99 per week",
+                title: "Weekly Premium",
+                subtitle: "3-day free trial, then $2.99/week",
                 isSelected: selectedPlan == "template_weekly",
                 onTap: { selectedPlan = "template_weekly" }
             )
@@ -218,7 +218,7 @@ struct PaywallView: View {
     }
     
     private var purchaseButtonText: String {
-        selectedPlan == "template_weekly" ? "Start 3-Day Free Trial" : "Purchase Lifetime"
+        selectedPlan == "template_weekly" ? "Start 3-Day Free Trial" : "Get Lifetime Access"
     }
     
     // MARK: - Methods
