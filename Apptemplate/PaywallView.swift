@@ -49,7 +49,7 @@ struct PaywallView: View {
                     Button("Done") {
                         isPresented = false
                     }
-                    .foregroundStyle(.blue)
+                    .foregroundStyle(.black)
                 }
             }
             .onChange(of: storeManager.isSubscribed) { _, newValue in
@@ -131,7 +131,7 @@ struct PaywallView: View {
         HStack(spacing: 8) {
             ForEach(0..<testimonials.count, id: \.self) { index in
                 Circle()
-                    .fill(index == currentTestimonial ? Color.purple : Color.gray.opacity(0.3))
+                    .fill(index == currentTestimonial ? Color.black : Color.gray.opacity(0.3))
                     .frame(width: 8, height: 8)
             }
         }
@@ -173,13 +173,7 @@ struct PaywallView: View {
             }
             .frame(maxWidth: .infinity)
             .padding(.vertical, 16)
-            .background(
-                LinearGradient(
-                    gradient: Gradient(colors: [Color.purple, Color.blue]),
-                    startPoint: .leading,
-                    endPoint: .trailing
-                )
-            )
+            .background(Color.black)
             .cornerRadius(12)
         }
         .padding(.horizontal, 20)
@@ -256,7 +250,7 @@ struct FeatureRow: View {
         HStack(spacing: 16) {
             Image(systemName: icon)
                 .font(.title2)
-                .foregroundStyle(.purple)
+                .foregroundStyle(.black)
                 .frame(width: 28)
             
             Text(text)
@@ -302,7 +296,7 @@ struct PlanCardView: View {
             .cornerRadius(12)
             .overlay(
                 RoundedRectangle(cornerRadius: 12)
-                    .stroke(isSelected ? Color.purple : Color.gray.opacity(0.2), lineWidth: isSelected ? 2 : 1)
+                    .stroke(isSelected ? Color.black : Color.gray.opacity(0.2), lineWidth: isSelected ? 2 : 1)
             )
         }
         .buttonStyle(PlainButtonStyle())
@@ -321,13 +315,7 @@ struct PlanCardView: View {
                     .foregroundStyle(.white)
                     .padding(.horizontal, 8)
                     .padding(.vertical, 4)
-                    .background(
-                        LinearGradient(
-                            gradient: Gradient(colors: [Color.purple, Color.blue]),
-                            startPoint: .leading,
-                            endPoint: .trailing
-                        )
-                    )
+                    .background(Color.black)
                     .cornerRadius(12)
             }
         }
@@ -350,11 +338,11 @@ struct PlanCardView: View {
     
     private var selectionIndicator: some View {
         Circle()
-            .fill(isSelected ? Color.purple : Color.clear)
+            .fill(isSelected ? Color.black : Color.clear)
             .frame(width: 24, height: 24)
             .overlay(
                 Circle()
-                    .stroke(isSelected ? Color.purple : Color.gray.opacity(0.3), lineWidth: 2)
+                    .stroke(isSelected ? Color.black : Color.gray.opacity(0.3), lineWidth: 2)
             )
             .overlay(
                 Image(systemName: "checkmark")
