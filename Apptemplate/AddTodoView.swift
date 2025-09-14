@@ -32,14 +32,6 @@ struct AddTodoView: View {
                 Section {
                     TextField("What needs to be done?", text: $title)
                         .font(.body)
-                        .padding(.horizontal, 16)
-                        .padding(.vertical, 12)
-                        .background(Color.white)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 8)
-                                .stroke(Color.gray.opacity(0.3), lineWidth: 1)
-                        )
-                        .cornerRadius(8)
                 }
                 .listRowBackground(Color.clear)
                 
