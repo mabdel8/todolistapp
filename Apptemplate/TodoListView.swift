@@ -19,7 +19,7 @@ struct TodoListView: View {
             TabView(selection: $selectedTab) {
                 TodayView()
                     .tabItem {
-                        Image(systemName: "calendar.day.timeline.left")
+                        Image(systemName: "list.bullet")
                     }
                     .tag(0)
                 
@@ -42,6 +42,12 @@ struct TodoListView: View {
                         }
                         .tag(2)
                 }
+                
+                SettingsView()
+                    .tabItem {
+                        Image(systemName: "gearshape.fill")
+                    }
+                    .tag(3)
             }
             .tint(.black)
             
@@ -54,7 +60,7 @@ struct TodoListView: View {
                         showAddTodo = true
                     }
                     .padding(.trailing, 20)
-                    .padding(.bottom, 30)
+                    .padding(.bottom, 100)
                 }
             }
         }
