@@ -15,6 +15,7 @@ struct PaywallView: View {
     @State private var currentTestimonial = 0
     @State private var selectedPlan: String = "template_weekly"
     @State private var testimonialTimer: Timer?
+    @State private var showFreeTrialPlan: Bool = true
     
     // MARK: - Constants
     private struct Constants {
@@ -26,9 +27,9 @@ struct PaywallView: View {
     }
     
     private let testimonials = [
-        Testimonial(text: "Recurring tasks for my daily habits are a game changer. Set once, done forever!", author: "Emma L."),
-        Testimonial(text: "The calendar view changed everything. I can see all my tasks and deadlines at a glance!", author: "David M."),
-        Testimonial(text: "Subtasks help me break down big projects into manageable pieces. Love it!", author: "Sarah K.")
+        Testimonial(text: "The calendar view changed everything. I can see all my tasks and deadlines at a glance!", author: "Emma L."),
+        Testimonial(text: "Subtasks help me break down big projects into manageable pieces. Love it!", author: "David M."),
+        Testimonial(text: "Setting specific deadlines keeps me accountable. Worth every penny!", author: "Sarah K.")
     ]
     
     // MARK: - Body
@@ -39,6 +40,8 @@ struct PaywallView: View {
                     appIconSection
                     featuresSection
                     testimonialsSection
+                    freeTrialToggleSection
+                        .padding(.bottom, -16)
                     subscriptionPlansSection
                     purchaseButtonSection
                     bottomLinksSection
@@ -69,14 +72,13 @@ struct PaywallView: View {
             .resizable()
             .aspectRatio(contentMode: .fit)
             .frame(width: Constants.appIconSize, height: Constants.appIconSize)
-            .cornerRadius(16)
-            .padding(.top, 20)
+            .cornerRadius(24)
+            .shadow(color: .black.opacity(0.1), radius: 8, x: 0, y: 4)
     }
     
     private var featuresSection: some View {
         VStack(alignment: .leading, spacing: 16) {
             FeatureRow(icon: "calendar.badge.clock", text: "Calendar View")
-            FeatureRow(icon: "repeat", text: "Recurring Tasks")
             FeatureRow(icon: "list.bullet.indent", text: "Create Subtasks")
             FeatureRow(icon: "clock.fill", text: "Set Deadline Times")
         }
@@ -137,22 +139,50 @@ struct PaywallView: View {
         }
     }
     
+    private var freeTrialToggleSection: some View {
+        HStack {
+            Text("Free Trial")
+                .font(.headline)
+                .foregroundStyle(.primary)
+            
+            Spacer()
+            
+            Toggle("", isOn: $showFreeTrialPlan)
+                .toggleStyle(SwitchToggleStyle(tint: .black))
+                .onChange(of: showFreeTrialPlan) { _, newValue in
+                    // Switch between weekly and lifetime plans
+                    selectedPlan = newValue ? "template_weekly" : "template_lifetime"
+                }
+        }
+        .padding(.horizontal, 16)
+        .padding(.vertical, 12)
+        .background(Color(.systemGray6))
+        .cornerRadius(12)
+        .padding(.horizontal, 20)
+    }
+    
     private var subscriptionPlansSection: some View {
         VStack(spacing: 12) {
             PlanCardView(
                 title: "Lifetime Access",
                 price: lifetimeProduct?.displayPrice ?? "$19.99",
-                originalPrice: "$49",
+                originalPrice: "$149",
                 badge: "BEST VALUE",
                 isSelected: selectedPlan == "template_lifetime",
-                onTap: { selectedPlan = "template_lifetime" }
+                onTap: { 
+                    selectedPlan = "template_lifetime"
+                    showFreeTrialPlan = false
+                }
             )
             
             PlanCardView(
-                title: "Weekly Premium",
-                subtitle: "3-day free trial, then $2.99/week",
+                title: "3-day Trial",
+                subtitle: "then \(weeklyProduct?.displayPrice ?? "$2.99")/week",
                 isSelected: selectedPlan == "template_weekly",
-                onTap: { selectedPlan = "template_weekly" }
+                onTap: { 
+                    selectedPlan = "template_weekly"
+                    showFreeTrialPlan = true
+                }
             )
         }
         .padding(.horizontal, 20)
@@ -189,20 +219,16 @@ struct PaywallView: View {
             Text("•")
                 .foregroundStyle(.secondary)
             
-            Button("Terms") {
-                // TODO: Handle terms action
-            }
-            .font(.footnote)
-            .foregroundStyle(.secondary)
+            Link("Terms", destination: URL(string: "https://abdalla2024.github.io/todo/terms.html")!)
+                .font(.footnote)
+                .foregroundStyle(.secondary)
             
             Text("•")
                 .foregroundStyle(.secondary)
             
-            Button("Privacy") {
-                // TODO: Handle privacy action
-            }
-            .font(.footnote)
-            .foregroundStyle(.secondary)
+            Link("Privacy", destination: URL(string: "https://abdalla2024.github.io/todo/privacy.html")!)
+                .font(.footnote)
+                .foregroundStyle(.secondary)
         }
         .padding(.bottom, 20)
     }
@@ -210,6 +236,10 @@ struct PaywallView: View {
     // MARK: - Computed Properties
     private var lifetimeProduct: Product? {
         storeManager.products.first { $0.id == "template_lifetime" }
+    }
+    
+    private var weeklyProduct: Product? {
+        storeManager.products.first { $0.id == "template_weekly" }
     }
     
     private var purchaseButtonText: String {
@@ -250,8 +280,9 @@ struct FeatureRow: View {
         HStack(spacing: 16) {
             Image(systemName: icon)
                 .font(.title2)
-                .foregroundStyle(.black)
+                .foregroundStyle(.green)
                 .frame(width: 28)
+
             
             Text(text)
                 .font(.headline)
@@ -278,7 +309,7 @@ struct PlanCardView: View {
                     if let subtitle = subtitle {
                         Text(subtitle)
                             .font(.subheadline)
-                            .foregroundStyle(.secondary)
+//                            .foregroundStyle(.secondary)
                     }
                     
                     if price != nil {
@@ -315,7 +346,7 @@ struct PlanCardView: View {
                     .foregroundStyle(.white)
                     .padding(.horizontal, 8)
                     .padding(.vertical, 4)
-                    .background(Color.black)
+                    .background(Color.green)
                     .cornerRadius(12)
             }
         }
@@ -330,8 +361,7 @@ struct PlanCardView: View {
                     .strikethrough()
             }
             Text(price!)
-                .font(.headline)
-                .fontWeight(.bold)
+                .font(.subheadline)
                 .foregroundStyle(.primary)
         }
     }

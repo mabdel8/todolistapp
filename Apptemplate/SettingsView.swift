@@ -50,9 +50,7 @@ struct SettingsView: View {
                             .foregroundStyle(.secondary)
                     }
                     
-                    Button(action: {
-                        // TODO: Handle privacy policy
-                    }) {
+                    Link(destination: URL(string: "https://abdalla2024.github.io/todo/privacy.html")!) {
                         HStack {
                             Text("Privacy Policy")
                                 .foregroundStyle(.black)
@@ -63,9 +61,7 @@ struct SettingsView: View {
                         }
                     }
                     
-                    Button(action: {
-                        // TODO: Handle terms of service
-                    }) {
+                    Link(destination: URL(string: "https://abdalla2024.github.io/todo/terms.html")!) {
                         HStack {
                             Text("Terms of Service")
                                 .foregroundStyle(.black)
@@ -79,9 +75,7 @@ struct SettingsView: View {
                 .listRowBackground(Color.clear)
                 
                 Section("Support") {
-                    Button(action: {
-                        // TODO: Handle contact support
-                    }) {
+                    Link(destination: URL(string: "https://abdalla2024.github.io/todo/")!) {
                         HStack {
                             Text("Contact Support")
                                 .foregroundStyle(.black)

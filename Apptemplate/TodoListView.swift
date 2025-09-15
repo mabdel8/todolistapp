@@ -25,7 +25,7 @@ struct TodoListView: View {
                 
                 UpcomingView()
                     .tabItem {
-                        Image(systemName: "calendar")
+                        Image(systemName: "calendar.day.timeline.left")
                     }
                     .tag(1)
                 
@@ -38,7 +38,7 @@ struct TodoListView: View {
                 } else {
                     LockedCalendarView(showPaywall: $showPaywall)
                         .tabItem {
-                            Image(systemName: "lock.fill")
+                            Image(systemName: "calendar.badge.clock")
                         }
                         .tag(2)
                 }
