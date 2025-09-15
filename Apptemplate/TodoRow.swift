@@ -61,13 +61,13 @@ struct TodoRow: View {
                         
                         if let deadline = todo.formattedDeadline {
                             HStack(spacing: 2) {
-                                Image(systemName: "exclamationmark.triangle.fill")
-                                    .font(.caption2)
+//                                Image(systemName: "exclamationmark.triangle.fill")
+//                                    .font(.caption2)
                                 Text("Due: \(deadline)")
                                     .font(.caption)
                                     .fontWeight(.medium)
                             }
-                            .foregroundStyle(todo.isCompleted ? Color.secondary : (todo.isOverdue ? Color.red : Color.orange))
+                            .foregroundStyle(todo.isCompleted ? Color.secondary : (todo.isOverdue ? Color.red : Color.red.opacity(0.7)))
                         }
                         
                         if !subtasks.isEmpty {

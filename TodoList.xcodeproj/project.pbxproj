@@ -8,11 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		2F191F5D2E5445E500D1FC57 /* apptemplatestorekit.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 2F191F5C2E5445E500D1FC57 /* apptemplatestorekit.storekit */; };
+		2FD9D0CF2E77C67B00502B17 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FD9D0CE2E77C67B00502B17 /* StoreKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2F191F4B2E54454F00D1FC57 /* Apptemplate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Apptemplate.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2F191F4B2E54454F00D1FC57 /* TodoList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TodoList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F191F5C2E5445E500D1FC57 /* apptemplatestorekit.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = apptemplatestorekit.storekit; sourceTree = "<group>"; };
+		2FD9D0CE2E77C67B00502B17 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -28,6 +30,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2FD9D0CF2E77C67B00502B17 /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -39,6 +42,7 @@
 			children = (
 				2F191F5C2E5445E500D1FC57 /* apptemplatestorekit.storekit */,
 				2F191F4D2E54454F00D1FC57 /* Apptemplate */,
+				2FD9D0CD2E77C67B00502B17 /* Frameworks */,
 				2F191F4C2E54454F00D1FC57 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -46,17 +50,25 @@
 		2F191F4C2E54454F00D1FC57 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				2F191F4B2E54454F00D1FC57 /* Apptemplate.app */,
+				2F191F4B2E54454F00D1FC57 /* TodoList.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		2FD9D0CD2E77C67B00502B17 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2FD9D0CE2E77C67B00502B17 /* StoreKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		2F191F4A2E54454F00D1FC57 /* Apptemplate */ = {
+		2F191F4A2E54454F00D1FC57 /* TodoList */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2F191F592E54455100D1FC57 /* Build configuration list for PBXNativeTarget "Apptemplate" */;
+			buildConfigurationList = 2F191F592E54455100D1FC57 /* Build configuration list for PBXNativeTarget "TodoList" */;
 			buildPhases = (
 				2F191F472E54454F00D1FC57 /* Sources */,
 				2F191F482E54454F00D1FC57 /* Frameworks */,
@@ -69,11 +81,11 @@
 			fileSystemSynchronizedGroups = (
 				2F191F4D2E54454F00D1FC57 /* Apptemplate */,
 			);
-			name = Apptemplate;
+			name = TodoList;
 			packageProductDependencies = (
 			);
 			productName = Apptemplate;
-			productReference = 2F191F4B2E54454F00D1FC57 /* Apptemplate.app */;
+			productReference = 2F191F4B2E54454F00D1FC57 /* TodoList.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -91,7 +103,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 2F191F462E54454F00D1FC57 /* Build configuration list for PBXProject "Apptemplate" */;
+			buildConfigurationList = 2F191F462E54454F00D1FC57 /* Build configuration list for PBXProject "TodoList" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -105,7 +117,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				2F191F4A2E54454F00D1FC57 /* Apptemplate */,
+				2F191F4A2E54454F00D1FC57 /* TodoList */,
 			);
 		};
 /* End PBXProject section */
@@ -333,7 +345,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2F191F462E54454F00D1FC57 /* Build configuration list for PBXProject "Apptemplate" */ = {
+		2F191F462E54454F00D1FC57 /* Build configuration list for PBXProject "TodoList" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2F191F572E54455100D1FC57 /* Debug */,
@@ -342,7 +354,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2F191F592E54455100D1FC57 /* Build configuration list for PBXNativeTarget "Apptemplate" */ = {
+		2F191F592E54455100D1FC57 /* Build configuration list for PBXNativeTarget "TodoList" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2F191F5A2E54455100D1FC57 /* Debug */,

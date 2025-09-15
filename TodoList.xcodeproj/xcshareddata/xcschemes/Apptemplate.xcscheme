@@ -16,9 +16,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2F191F4A2E54454F00D1FC57"
-               BuildableName = "Apptemplate.app"
-               BlueprintName = "Apptemplate"
-               ReferencedContainer = "container:Apptemplate.xcodeproj">
+               BuildableName = "TodoList.app"
+               BlueprintName = "TodoList"
+               ReferencedContainer = "container:TodoList.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -45,9 +45,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2F191F4A2E54454F00D1FC57"
-            BuildableName = "Apptemplate.app"
-            BlueprintName = "Apptemplate"
-            ReferencedContainer = "container:Apptemplate.xcodeproj">
+            BuildableName = "TodoList.app"
+            BlueprintName = "TodoList"
+            ReferencedContainer = "container:TodoList.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <StoreKitConfigurationFileReference
@@ -65,9 +65,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2F191F4A2E54454F00D1FC57"
-            BuildableName = "Apptemplate.app"
-            BlueprintName = "Apptemplate"
-            ReferencedContainer = "container:Apptemplate.xcodeproj">
+            BuildableName = "TodoList.app"
+            BlueprintName = "TodoList"
+            ReferencedContainer = "container:TodoList.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
